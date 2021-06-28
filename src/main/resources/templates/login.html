@@ -14,7 +14,8 @@
 </head>
 <body>
     <div id="login_form">
-        <h2 th:text="${msg}" style="color: red"></h2>
+<!--        如果msg的值不为空就显示消息-->
+        <h2 th:text="${msg}" style="color: red" th:if="${not #strings.isEmpty(msg)}"></h2>
         <form class="form-horizontal" th:action="@{/login}" method="post">
             <div class="form-group">
                 <label for="inputUsername" class="col-sm-2 control-label" >用户名</label>
