@@ -40,5 +40,22 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return true;
     }
 
+    @Override
+    public Boolean addUser(User user) {
+        int i = userMapper.insert(user);
+        if(i==1) return true;
+        return false;
+    }
+
+    @Override
+    public Boolean isUnique(String userName) {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper
+                .eq("user_name",userName);
+        User user = userMapper.selectOne(wrapper);
+        if(user==null) return true;
+        return false;
+    }
+
 
 }

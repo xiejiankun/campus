@@ -12,7 +12,10 @@ public class LoginHandleInteceptor implements HandlerInterceptor {
         Object userName = request.getSession().getAttribute("userName");
         if(userName==null) {
             request.setAttribute("msg","没有权限，请先登录");
-            request.getRequestDispatcher("/login.html").forward(request,response);
+            System.out.println("被拦截==========");
+            request.getRequestDispatcher("/toLogin").forward(request,response);
+            /*response.sendRedirect(request.getContextPath()+"/toLogin");*/
+            //重定向必须加上路径名称
             return false;//放行
         }else {
             return true;
