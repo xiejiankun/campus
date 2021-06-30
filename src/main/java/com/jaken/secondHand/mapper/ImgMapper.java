@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
  * @author jaken Xie
  * @since 2021-06-26
  */
-@Mapper
+
 @Repository
 public interface ImgMapper extends BaseMapper<Img> {
 

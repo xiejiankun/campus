@@ -16,7 +16,6 @@ import java.util.List;
  */
 public interface UserService extends IService<User> {
 
-    List<User> showUserList();
     Boolean login(String userName,String userPwd);
     Boolean addUser(User user);
     Boolean isUnique(String userName);

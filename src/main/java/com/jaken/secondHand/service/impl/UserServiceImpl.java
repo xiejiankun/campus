@@ -23,11 +23,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Autowired
     private UserMapper userMapper;
 
-    @Override
-    public List<User> showUserList() {
-        List<User> users = userMapper.selectList(null);
-        return users;
-    }
 
     @Override
     public Boolean login(String userName, String userPwd) {
