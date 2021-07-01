@@ -1,10 +1,14 @@
 package com.jaken.secondHand.pojo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * <p>
@@ -15,6 +19,8 @@ import lombok.EqualsAndHashCode;
  * @since 2021-06-26
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(value="GoodsCart对象", description="")
 public class GoodsCart implements Serializable {
@@ -29,6 +35,10 @@ public class GoodsCart implements Serializable {
 
     @ApiModelProperty(value = "商品总额")
     private Integer goodsAmount;
+    @ApiModelProperty(value = "商品总额")
+
+    private ArrayList<Goods> goods;
+
 
 
 }

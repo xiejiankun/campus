@@ -4,6 +4,7 @@ import com.jaken.secondHand.pojo.Goods;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -14,6 +15,7 @@ import java.util.List;
  * @since 2021-06-26
  */
 public interface GoodsService extends IService<Goods> {
-    List<Goods> goodsLists();
+    List<Goods> goodsLists(int currentPage);
+    Integer getTotalPage();
 
 }

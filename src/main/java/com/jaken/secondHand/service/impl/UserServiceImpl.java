@@ -28,6 +28,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public Boolean login(String userName, String userPwd) {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper
+                .select("user_name","user_pwd")
                 .eq("user_name",userName)
                 .eq("user_pwd",userPwd);
         User user1 = userMapper.selectOne(wrapper);
@@ -46,6 +47,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public Boolean isUnique(String userName) {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper
+                .select("user_name")
                 .eq("user_name",userName);
         User user = userMapper.selectOne(wrapper);
         if(user==null) return true;

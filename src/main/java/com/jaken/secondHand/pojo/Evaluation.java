@@ -4,8 +4,10 @@ import java.util.Date;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * <p>
@@ -16,6 +18,8 @@ import lombok.EqualsAndHashCode;
  * @since 2021-06-26
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(value="Evaluation对象", description="")
 public class Evaluation implements Serializable {
@@ -39,6 +43,9 @@ public class Evaluation implements Serializable {
 
     @ApiModelProperty(value = "评分，最低分为0分，最高分为5 分，必须是整数")
     private Integer score;
+
+
+
 
 
 }

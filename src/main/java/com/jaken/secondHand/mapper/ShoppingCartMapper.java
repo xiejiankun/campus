@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+
 /**
  * <p>
  *  Mapper 接口
@@ -16,5 +18,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ShoppingCartMapper extends BaseMapper<ShoppingCart> {
-
+  public ShoppingCart getAllShoppingCart();
 }

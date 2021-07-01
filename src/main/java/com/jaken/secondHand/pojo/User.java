@@ -5,9 +5,9 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -18,6 +18,8 @@ import lombok.Setter;
  * @since 2021-06-26
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @ApiModel(value="User对象", description="")
 public class User {
 
@@ -42,9 +44,14 @@ public class User {
 
     @ApiModelProperty(value = "微信号")
     @TableField("wechat_num")
-    private Double wechatNum;
+    private String wechatNum;
 
     @ApiModelProperty(value = "信用分")
     @TableField("credit_score")
     private Double creditScore;
+
+    private List<Order> orders;
+    private List<Goods> sellGoods;
+    private List<Goods> buyGoods;
+    private GoodsCart goodsCart;
 }

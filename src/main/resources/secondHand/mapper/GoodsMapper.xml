@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jaken.secondHand.mapper.GoodsMapper">
+    <select id="showGoodsList" resultMap="goodsImgUser">
+        select goods.*,user.user_id uid,user_name,user_pwd,user_phone,address,wechat_num,credit_score,
+               img_id,img.goods_id iGoods_id,img_addr,img_desc
+        from second_hand.img,second_hand.user,second_hand.goods
+        where img.goods_id=goods.goods_id and user.user_id=goods.user_id
+    </select>
+
+    <resultMap id="goodsImgUser" type="com.jaken.secondHand.pojo.Goods">
+        <id property="goodsId" column="goods_id"></id>
+        <result property="userId" column="user_id"></result>
+        <result property="goodsName" column="goods_name"></result>
+        <result property="goodsDesc" column="goods_desc"></result>
+        <result property="goodsBrand" column="goods_brand"></result>
+        <result property="goodsPrice" column="goods_price"></result>
+        <result property="goodsAmount" column="goods_amount"></result>
+
+        <association property="ownUser" javaType="com.jaken.secondHand.pojo.User">
+            <id property="userId" column="uid"></id>
+            <result property="userName" column="user_name"></result>
+            <result property="userPwd" column="user_pwd"></result>
+            <result property="userPhone" column="user_phone"></result>
+            <result property="address" column="address"></result>
+            <result property="wechatNum" column="wechat_num"></result>
+            <result property="creditScore" column="credit_score"></result>
+        </association>
+
+        <collection property="imgs" ofType="Img">
+            <id property="imgId" column="img_id"></id>
+            <result property="goodsId" column="iGoods_id"></result>
+            <result property="imgAddr" column="img_addr"></result>
+            <result property="imgDesc" column="img_desc"></result>
+        </collection>
+
+    </resultMap>
+</mapper>

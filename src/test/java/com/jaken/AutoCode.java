@@ -43,7 +43,7 @@ public class AutoCode {
         pc.setModuleName("secondHand");
         pc.setParent("com.jaken");//设置父目录
         pc.setEntity("pojo");
-        pc.setMapper("mapper");
+        pc.setMapper("secondHand/mapper");
         pc.setService("service");
         pc.setController("controller");
         mpg.setPackageInfo(pc);

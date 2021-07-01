@@ -10,7 +10,7 @@
 <body>
 <div id="register_form">
     <p th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
-    <div class="abc" style="color: red"></div>
+    <div class="tips" style="color: red"></div>
     <form class="form-horizontal" th:action="@{/register}" method="post">
         <div class="form-group">
             <label for="inputUsername" class="col-sm-2 control-label" >用户名</label>
@@ -45,7 +45,7 @@
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <!-- Indicates a successful or positive action -->
-                <button type="submit" class="btn btn-success">注册</button>
+                <button type="submit" class="btn btn-success" id="register">注册</button>
             </div>
         </div>
     </form>
@@ -59,9 +59,13 @@
             url : basePath+"/userNameUnique",
             data : {"userName" : $("#inputUsername").val()},
             success(result){
-                console.log($('.abc'));
-                $('.abc').html(result);
-
+                console.log($('.tips'));
+                $('.tips').html(result);
+                if (result=="") {
+                    $('#register').removeAttr("disabled","disabled");
+                }else {
+                    $('#register').attr("disabled","disabled");
+                }
             }
 
         })

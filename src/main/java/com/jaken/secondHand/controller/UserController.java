@@ -49,7 +49,7 @@ public class UserController {
 
     @RequestMapping("/userNameUnique")
     @ResponseBody
-    public String userNameUnique(String userName, Model model) {
+    public String userNameUnique(String userName) {
         if (!userService.isUnique(userName)) {
             return "用户名已存在，重新输入用户名！";
         }
