@@ -20,8 +20,10 @@ class CampusApplicationTests {
 
     @Test
     void contextLoads() {
-        Integer totalPage = goodsService.getTotalPage();
-        System.out.println(totalPage);
+        List<Goods> goodsLists = goodsService.goodsLists(2);
+        for (Goods goodsList : goodsLists) {
+            System.out.println(goodsList);
+        }
     }
 
 

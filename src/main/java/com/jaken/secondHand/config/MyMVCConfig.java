@@ -11,16 +11,17 @@ public class MyMVCConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("index");
-        registry.addViewController("/register.html").setViewName("register");
+        registry.addViewController("/index.html").setViewName("index");
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginHandleInteceptor())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/","/toLogin","/toRegister","/login","/register","/userNameUnique",
+                .excludePathPatterns("/","/toLogin","/toRegister","/login","/register",
+                        "/userNameUnique","/getTotalPage","/getAllGoods",
                 "/css/**","/fonts/**",
-                "/**/**.js","/img/**"
+                "/**/**","/img/**"
         );
     }
 }

@@ -29,19 +29,19 @@ import java.util.Map;
 public class GoodsController {
     @Autowired
     private GoodsService goodsService;
+    private ObjectMapper mapper = new ObjectMapper();
 
     @RequestMapping("/getAllGoods")
     @ResponseBody
-    public List<Goods> showGoods(int currentPage) throws JsonProcessingException {
+    public String showGoods(int currentPage) throws JsonProcessingException {
         List<Goods> goods = goodsService.goodsLists(currentPage);
-//        ObjectMapper mapper= new ObjectMapper();
-//        String str = mapper.writeValueAsString(goods);
-        return goods;
+        String str = mapper.writeValueAsString(goods);
+        return str;
     }
 
     @RequestMapping("/getTotalPage")
     @ResponseBody
-    public Integer getTotalPage() {
+    public Integer getTotalPage() throws JsonProcessingException {
         return goodsService.getTotalPage();
     }
 

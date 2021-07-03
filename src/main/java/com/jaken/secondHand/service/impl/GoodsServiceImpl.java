@@ -23,12 +23,13 @@ import java.util.Map;
 @Service
 public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements GoodsService {
 
+    private final int PAGE_SIZE =10;
     @Autowired
     private GoodsMapper goodsMapper;
 
     @Override
     public  List<Goods> goodsLists(int currentPage) {
-        Page<Goods> goodsPage = new Page<>(currentPage,5);
+        Page<Goods> goodsPage = new Page<>(currentPage,PAGE_SIZE);
         List<Goods> goods = goodsMapper.showGoodsList(goodsPage);
         for (Goods good : goods) {
             System.out.println(good);
@@ -39,7 +40,7 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
     @Override
     public Integer getTotalPage() {
         Integer count = goodsMapper.selectCount(null);
-        if(count%15==0) return count/15;
-        return count/15+1;
+        if(count%PAGE_SIZE==0) return count/PAGE_SIZE;
+        return count/PAGE_SIZE+1;
     }
 }

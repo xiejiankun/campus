@@ -36,10 +36,15 @@ public class UserController {
         if (flag) {
             session.setAttribute("userName", userName);
             System.out.println("登录成功");
-            return "main";
+            return "index";
         }
         model.addAttribute("msg", "用户名或密码错误");
         return "login";
+    }
+    @RequestMapping("/logOut")
+    public String logOut(HttpSession session){
+        session.invalidate();
+        return "redirect:/index.html";
     }
 
     @RequestMapping("/toRegister")
@@ -59,7 +64,7 @@ public class UserController {
     @RequestMapping("/register")
     public String register(User user, Model model) {
         Boolean flag = false;
-        flag = userService.isUnique(user.getUserName());
+        /*flag = userService.isUnique(user.getUserName());*/
 /*        if (!flag) {
             model.addAttribute("msg","用户名已存在，重新输入用户名！");
             return "register";

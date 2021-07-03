@@ -2,8 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jaken.secondHand.mapper.GoodsMapper">
     <select id="showGoodsList" resultMap="goodsImgUser">
-        select goods.*,user.user_id uid,user_name,user_pwd,user_phone,address,wechat_num,credit_score,
-               img_id,img.goods_id iGoods_id,img_addr,img_desc
+        select img.img_addr,goods.*,user.user_name
         from second_hand.img,second_hand.user,second_hand.goods
         where img.goods_id=goods.goods_id and user.user_id=goods.user_id
     </select>
