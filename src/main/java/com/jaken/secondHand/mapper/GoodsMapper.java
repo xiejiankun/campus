@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jaken.secondHand.pojo.Goods;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,5 +22,9 @@ import java.util.Map;
 @Repository
 public interface GoodsMapper extends BaseMapper<Goods> {
     List<Goods> showGoodsList(Page<Goods> page);
+    List<Goods> showGoodsListByName(Page<Goods> page,@Param("goodsName") String goodsName);
+    Goods showGoodsDetial(@Param("goodsId") int goodsId);
+/*    List<Goods> showMyGoods(@Param("userId") int userId);*/
+    int updateGoods(Goods goods);//实体类不用写@Param
 
 }

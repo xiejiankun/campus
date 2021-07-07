@@ -12,5 +12,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2021-06-26
  */
 public interface GoodsCartService extends IService<GoodsCart> {
-
+    int addGoodsToShoppingCart(Integer goodsId,Integer userId);
+    int deleteShoppingCartGoods(Integer goodsId,Integer userId);
 }

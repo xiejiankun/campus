@@ -2,9 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jaken.secondHand.mapper.GoodsMapper">
     <select id="showGoodsList" resultMap="goodsImgUser">
-        select img.img_addr,goods.*,user.user_name
-        from second_hand.img,second_hand.user,second_hand.goods
-        where img.goods_id=goods.goods_id and user.user_id=goods.user_id
+        select goods.main_img,goods.goods_id,goods.user_id,goods_name,
+               goods.goods_desc,goods.goods_brand,goods.goods_price,
+               goods.goods_amount,user.user_name,user.user_id uid,user.user_phone
+        from second_hand.user,second_hand.goods
+        where user.user_id=goods.user_id
+    </select>
+
+    <select id="showGoodsDetial"  resultMap="goodsImgUser">
+        select goods.main_img,goods.goods_id,goods.user_id,goods_name,
+               goods.goods_desc,goods.goods_brand,goods.goods_price,
+               goods.goods_amount,user.user_name,user.user_id uid,user.user_phone
+        from second_hand.user,second_hand.goods,second_hand.img
+        where user.user_id=goods.user_id and goods.goods_id=#{goodsId}
+    </select>
+
+    <update id="updateGoods">
+        update second_hand.goods set
+            goods_name=#{goodsName},
+            goods_price=#{goodsPrice},goods_brand=#{goodsBrand},goods_desc=#{goodsDesc}
+        where goods_id=#{goodsId}
+    </update>
+
+    <select id="showGoodsListByName" parameterType="String" resultMap="goodsImgUser">
+        select goods.main_img,goods.goods_id,goods.user_id,goods_name,
+               goods.goods_desc,goods.goods_brand,goods.goods_price,
+               goods.goods_amount,user.user_name,user.user_id uid,user.user_phone
+        from second_hand.user,second_hand.goods
+        where user.user_id=goods.user_id and goods_name like concat('%',#{goodsName},'%')
     </select>
 
     <resultMap id="goodsImgUser" type="com.jaken.secondHand.pojo.Goods">
@@ -12,6 +37,7 @@
         <result property="userId" column="user_id"></result>
         <result property="goodsName" column="goods_name"></result>
         <result property="goodsDesc" column="goods_desc"></result>
+        <result property="mainImg" column="main_img"></result>
         <result property="goodsBrand" column="goods_brand"></result>
         <result property="goodsPrice" column="goods_price"></result>
         <result property="goodsAmount" column="goods_amount"></result>

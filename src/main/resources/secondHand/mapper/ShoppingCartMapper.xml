@@ -1,5 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jaken.secondHand.mapper.ShoppingCartMapper">
+    <insert id="addShoppingCart">
+        insert into second_hand.shopping_cart values (#{userId},#{userId})
+    </insert>
+    <select id="getShoppingCartGoodsByUserId" resultMap="goodsImgUser">
+        select goods.main_img,goods.goods_id,goods.user_id,goods_name,
+               goods.goods_desc,goods.goods_brand,goods.goods_price,
+               goods.goods_amount,user.user_name,user.user_id uid,user.user_phone
+        from second_hand.goods_cart gc,second_hand.shopping_cart sc,second_hand.user,second_hand.goods
+        where gc.goods_id=goods.goods_id and gc.cart_id=sc.cart_id and sc.user_id = #{userId} and user.user_id=goods.user_id
+    </select>
+
+    <select id="getOrderGoodsByOrderId" resultMap="goodsImgUser">
+        select goods.main_img,goods.goods_id,goods.user_id,goods_name,
+               goods.goods_desc,goods.goods_brand,goods.goods_price,
+               goods.goods_amount,user.user_name,user.user_id uid,user.user_phone
+        from second_hand.user,second_hand.goods,second_hand.sc_order,second_hand.order_goods
+        where user.user_id=goods.user_id and sc_order.order_id=order_goods.order_id and goods.goods_id=order_goods.goods_id and sc_order.order_id=#{orderId}
+    </select>
+
+<!--    <select id="getGoodsAmount" resultType="Integer">
+        select gc.goods_amount
+        from second_hand.goods_cart gc,second_hand.shopping_cart sc,second_hand.goods g
+        where gc.goods_id=g.goods_id and gc.cart_id=sc.cart_id and sc.user_id = #{userId}
+    </select>-->
+
+    <resultMap id="goodsImgUser" type="com.jaken.secondHand.pojo.Goods">
+        <id property="goodsId" column="goods_id"></id>
+        <result property="userId" column="user_id"></result>
+        <result property="goodsName" column="goods_name"></result>
+        <result property="goodsDesc" column="goods_desc"></result>
+        <result property="mainImg" column="main_img"></result>
+        <result property="goodsBrand" column="goods_brand"></result>
+        <result property="goodsPrice" column="goods_price"></result>
+        <result property="goodsAmount" column="goods_amount"></result>
+
+        <association property="ownUser" javaType="com.jaken.secondHand.pojo.User">
+            <id property="userId" column="uid"></id>
+            <result property="userName" column="user_name"></result>
+            <result property="userPwd" column="user_pwd"></result>
+            <result property="userPhone" column="user_phone"></result>
+            <result property="address" column="address"></result>
+            <result property="wechatNum" column="wechat_num"></result>
+            <result property="creditScore" column="credit_score"></result>
+        </association>
+
+        <collection property="imgs" ofType="Img">
+            <id property="imgId" column="img_id"></id>
+            <result property="goodsId" column="iGoods_id"></result>
+            <result property="imgAddr" column="img_addr"></result>
+            <result property="imgDesc" column="img_desc"></result>
+        </collection>
+
+    </resultMap>
 
 </mapper>

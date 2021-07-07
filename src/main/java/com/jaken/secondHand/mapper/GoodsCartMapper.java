@@ -16,5 +16,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface GoodsCartMapper extends BaseMapper<GoodsCart> {
-
+    int addGoodsCart (GoodsCart goodsCart);
 }

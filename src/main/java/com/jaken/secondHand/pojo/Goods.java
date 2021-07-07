@@ -43,14 +43,20 @@ public class Goods implements Serializable {
     @ApiModelProperty(value = "商品描述")
     private String goodsDesc;
 
+    @ApiModelProperty(value = "商品展示图")
+    private String mainImg;
+
     @ApiModelProperty(value = "商品品牌")
     private String goodsBrand;
 
     @ApiModelProperty(value = "商品价格")
-    private BigDecimal goodsPrice;
+    private Double goodsPrice;
 
     @ApiModelProperty(value = "库存")
     private Integer goodsAmount;
+
+    @ApiModelProperty(value = "订单中的商品数量")
+    private Integer goodsOrderAmount;
 
     private User ownUser;
 

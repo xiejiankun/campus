@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/shoppingcart.css}">
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+    <script th:src="@{/js/shoppingcart.js}"></script>
+    <title>购物车</title>
+</head>
+<body>
+<div id="nav">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <img th:src="@{/img/logo.png}" alt="logo">
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right" id="loginRegister">
+                    <li>
+                        <a th:href="@{/toIndex}">
+                            <span class="glyphicon glyphicon-home navtu " style=" padding-right: 5px;"
+                                  aria-hidden="true"></span>首页
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/toMyOrder/{userId}(userId=${session.userId})}">
+                            <span class="glyphicon glyphicon-list-alt" style=" padding-right: 5px;"
+                                  aria-hidden="true"></span>我的订单
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/toMySell/{userId}(userId=${session.userId})}">
+                            <span class="glyphicon glyphicon-user" style=" padding-right: 5px;"
+                                  aria-hidden="true"></span>我是卖家
+                        </a>
+                    </li>
+                    <li class="text-center">
+                        <a th:href="@{/shoppingCartGoods/{userId}(userId=${session.userId})}"><span
+                                class="glyphicon glyphicon glyphicon-shopping-cart navtu"
+                                style=" padding-right: 5px;" aria-hidden="true"></span>购物车</a>
+                    </li>
+                    <li><a id="login" th:href="@{/toLogin}"
+                           th:text="${#strings.isEmpty(session.userName)?'登录':session.userName}"></a></li>
+                    <li><a id="logOut" th:href="@{/logOut}" th:text="${#strings.isEmpty(session.userName)?'':'注销'}"></a>
+                    </li>
+                    <li><a th:href="@{/toRegister}">注册</a></li>
+                    <li><p th:text="${session.userId}" style="display: none" id="userId"></p></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<div id="main">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="input-group" id="search">
+            <input type="text" class="form-control" placeholder="搜索...">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button" id="searchbutton"><span class="glyphicon glyphicon-search
+                "></span> 搜索</button>
+            </span>
+        </div>
+    </div>
+    <div class="container">
+        <table class="table table-condensed">
+            <caption><h3 class="text-danger">订单详情</h3></caption>
+            <thead>
+            <tr>
+                <th>商品详情</th>
+                <th>价格</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="goods:${list}">
+                <td>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img th:src="@{/img/{img}(img=${goods.mainImg})}" alt=""
+                                 style="width: 100px; height: 100px;">
+                        </div>
+                        <div class="col-sm-6">
+                            <p id="goodsName" th:text="${goods.goodsName}"></p>
+                            <br>
+                            <p id="goodsDesc" th:text="${goods.goodsDesc}"></p>
+                        </div>
+                    </div>
+                </td>
+                <td><p style="line-height: 100px;" th:text="${goods.goodsPrice}" class="price"><label></label></p></td>
+            </tr>
+            </tbody>
+        </table>
+        <hr>
+    </div>
+    <hr>
+</div>
+</body>
+</html>

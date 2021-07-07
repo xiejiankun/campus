@@ -1,6 +1,9 @@
 package com.jaken.secondHand.controller;
 
+import com.jaken.secondHand.config.Md5;
+import com.jaken.secondHand.pojo.ShoppingCart;
 import com.jaken.secondHand.pojo.User;
+import com.jaken.secondHand.service.ShoppingCartService;
 import com.jaken.secondHand.service.UserService;
 import com.jaken.secondHand.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +17,11 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class UserController {
+    private Md5 md5 = new Md5();
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private ShoppingCartService shoppingCartService;
 /*
     @RequestMapping("/showUserList")
     public List<User> showUserList(){
@@ -32,12 +37,15 @@ public class UserController {
 
     @PostMapping("/login")
     public String login(String userName, String userPwd, Model model, HttpSession session) {
-        Boolean flag = userService.login(userName, userPwd);
-        if (flag) {
+        Integer userId = userService.login(userName, userPwd);
+        System.out.println(userId);
+        if (userId!=0) {
             session.setAttribute("userName", userName);
+            session.setAttribute("userId",userId);
             System.out.println("登录成功");
             return "index";
         }
+        System.out.println("登陆失败===============");
         model.addAttribute("msg", "用户名或密码错误");
         return "login";
     }
@@ -47,10 +55,16 @@ public class UserController {
         return "redirect:/index.html";
     }
 
+    @RequestMapping("/toIndex")
+    public String toIndex() {
+        return "redirect:/index.html";
+    }
+
     @RequestMapping("/toRegister")
     public String toRegister() {
-        return "register";
+        return "redirect:/register.html";
     }
+
 
     @RequestMapping("/userNameUnique")
     @ResponseBody
@@ -63,15 +77,11 @@ public class UserController {
 
     @RequestMapping("/register")
     public String register(User user, Model model) {
-        Boolean flag = false;
-        /*flag = userService.isUnique(user.getUserName());*/
-/*        if (!flag) {
-            model.addAttribute("msg","用户名已存在，重新输入用户名！");
-            return "register";
-        }*/
+        Boolean flag;
         flag = userService.addUser(user);
         if (flag) {
             model.addAttribute("msg", "您已成功注册，请登录！");
+            shoppingCartService.addShoppingCart(user.getUserId());
             return "login";
         } else {
             model.addAttribute("msg", "注册失败!请重新注册");

@@ -50,7 +50,7 @@ public class User {
     @TableField("credit_score")
     private Double creditScore;
 
-    private List<Order> orders;
+    private List<scOrder> scOrders;
     private List<Goods> sellGoods;
     private List<Goods> buyGoods;
     private GoodsCart goodsCart;

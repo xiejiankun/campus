@@ -4,6 +4,9 @@ import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -32,11 +35,11 @@ public class ShoppingCart implements Serializable {
     @TableId(value = "cart_id", type = IdType.AUTO)
     private Integer cartId;
 
-    @ApiModelProperty(value = "用户名")
+    @ApiModelProperty(value = "用户ID")
     private Integer userId;
 
-    @ApiModelProperty(value = "总额")
-    private BigDecimal totalMoney;
+    @ApiModelProperty(value = "购物车中的商品")
+    private List<Goods> goods;
 
 
 }

@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * <p>
@@ -25,7 +26,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(value="Order对象", description="")
-public class Order implements Serializable {
+public class scOrder implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -39,13 +40,14 @@ public class Order implements Serializable {
     private Integer status;
 
     @ApiModelProperty(value = "下单时间")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date orderTime;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "支付时间")
     private Date payTime;
 
     @ApiModelProperty(value = "订单总额")
-    private BigDecimal totalMoney;
+    private Double totalMoney;
 
     private List<Goods> goods;
 

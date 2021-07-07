@@ -2,6 +2,7 @@ package com.jaken.secondHand.pojo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -33,11 +34,10 @@ public class GoodsCart implements Serializable {
     @ApiModelProperty(value = "商品号")
     private Integer goodsId;
 
-    @ApiModelProperty(value = "商品总额")
-    private Integer goodsAmount;
-    @ApiModelProperty(value = "商品总额")
 
-    private ArrayList<Goods> goods;
+
+
+
 
 
 

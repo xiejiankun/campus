@@ -32,7 +32,7 @@ public class OrderGoods implements Serializable {
     private Integer goodsId;
 
     @ApiModelProperty(value = "商品数量")
-    private String goodsAmount;
+    private int goodsAmount;
 
 
 }

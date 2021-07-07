@@ -21,22 +21,28 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right" id="loginRegister">
                     <li>
-                        <a href="">
-                            <span class="glyphicon glyphicon-home navtu " style=" padding-right: 5px;" aria-hidden="true"></span>首页
+                        <a th:href="@{/toMyOrder/{userId}(userId=${session.userId})}">
+                            <span class="glyphicon glyphicon-list-alt" style=" padding-right: 5px;"
+                                  aria-hidden="true"></span>我的订单
                         </a>
                     </li>
                     <li>
-                        <a href="">
-                            <span class="glyphicon glyphicon-user" style=" padding-right: 5px;" aria-hidden="true"></span>我的物品
+                        <a th:href="@{/toMySell/{userId}(userId=${session.userId})}">
+                            <span class="glyphicon glyphicon-user" style=" padding-right: 5px;"
+                                  aria-hidden="true"></span>我是卖家
                         </a>
                     </li>
                     <li class="text-center">
-                        <a href=""><span class="glyphicon glyphicon glyphicon-shopping-cart navtu"
-                                         style=" padding-right: 5px;" aria-hidden="true"></span>购物车</a>
+                        <a th:href="@{/shoppingCartGoods/{userId}(userId=${session.userId})}"><span
+                                class="glyphicon glyphicon glyphicon-shopping-cart navtu"
+                                style=" padding-right: 5px;" aria-hidden="true"></span>购物车</a>
                     </li>
-                    <li><a id="login" th:href="@{/toLogin}" th:text="${#strings.isEmpty(session.userName)?'登录':session.userName}"></a></li>
-                    <li><a id="logOut" th:href="@{/logOut}" th:text="${#strings.isEmpty(session.userName)?'':'注销'}"></a></li>
+                    <li><a id="login" th:href="@{/toLogin}"
+                           th:text="${#strings.isEmpty(session.userName)?'登录':session.userName}"></a></li>
+                    <li><a id="logOut" th:href="@{/logOut}" th:text="${#strings.isEmpty(session.userName)?'':'注销'}"></a>
+                    </li>
                     <li><a th:href="@{/toRegister}">注册</a></li>
+                    <li><p th:text="${session.userId}" style="display: none" id="userId"></p></li>
                 </ul>
             </div>
         </div>
@@ -45,84 +51,95 @@
 <div id="mainMiddle">
     <div class="container-fluid">
         <div class="row" id="search">
+            <div style="display: flex;justify-content: center">
+                <img th:src="@{/img/logo.png}" alt="">
+            </div>
+            <p th:text="${msg}" class="text-center" style="color: red"></p>
             <div class="col-md-6 col-md-offset-3">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="搜索...">
+                    <input id="inputText" type="text" class="form-control" placeholder="找找看看...">
                     <span class="input-group-btn">
-              <button class="btn btn-default" type="button">搜索</button>
+              <button class="btn btn-default" type="button" id="searchBtn">搜索</button>
             </span>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-6 col-md-2 col-md-offset-1">
-                <div class="thumbnail show">
+                <div class="show">
 
                 </div>
             </div>
             <div class="col-sm-6 col-md-2 ">
-                <div class="thumbnail show">
+                <div class="show">
 
                 </div>
             </div>
             <div class="col-sm-6 col-md-2 ">
-                <div class="thumbnail show">
+                <div class="show">
 
                 </div>
             </div>
             <div class="col-sm-6 col-md-2 ">
-                <div class="thumbnail show">
+                <div class="show">
 
                 </div>
             </div>
             <div class="col-sm-6 col-md-2">
-                <div class="thumbnail show">
+                <div class="show">
 
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-6 col-md-2 col-md-offset-1">
-                <div class="thumbnail show">
+                <div class="show">
 
                 </div>
             </div>
             <div class="col-sm-6 col-md-2 ">
-                <div class="thumbnail show">
+                <div class="show">
 
                 </div>
             </div>
             <div class="col-sm-6 col-md-2 ">
-                <div class="thumbnail show">
+                <div class="show">
 
                 </div>
             </div>
             <div class="col-sm-6 col-md-2 ">
-                <div class="thumbnail show">
+                <div class="show">
 
                 </div>
             </div>
             <div class="col-sm-6 col-md-2">
-                <div class="thumbnail show">
+                <div class="show">
 
                 </div>
             </div>
         </div>
     </div>
+    <form action="" class="form-horizontal">
+        <div class="form-group" style="display: flex;justify-content: center">
+            <div class="col-md-3">
+                <div id="button">
+                    <button type="button" class="btn btn-info" id="currentPage"></button>
+                    <button type="button" class="btn btn-info" id="high" onclick="reducePage()">上一页</button>
+                    <!-- Contextual button for informational alert messages -->
+                    <button type="button" class="btn btn-info" id="low" onclick="addPage()">下一页</button>
+                    <button type="button" class="btn btn-info" id="totalPage"></button>
 
-</div>
-<div id="footer">
-    <button type="button" class="btn btn-info" id="currentPage"></button>
-    <button type="button" class="btn btn-info" id="high" onclick="reducePage()">上一页</button>
-    <!-- Contextual button for informational alert messages -->
-    <button type="button" class="btn btn-info" id="low" onclick="addPage()">下一页</button>
-    <button type="button" class="btn btn-info" id="totalPage"></button>
-    <hr>
-    <p class="text-center">
-        本网站由长沙理工大学计算机系同学完成@2021.07<br>
-        本项目源码受MIT开源协议保护<br>
-    </p>
-</div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div id="footer">
+        <hr>
+        <p class="text-center">
+            本网站由长沙理工大学计算机系同学完成@2021.07<br>
+            本项目源码受MIT开源协议保护<br>
+        </p>
+    </div>
 </div>
 </body>
 </html>

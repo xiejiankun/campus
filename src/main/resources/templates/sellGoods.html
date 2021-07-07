@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/sellGoods.css}">
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+    <!--    <script th:src="@{/js/sellGoods.js}"></script>-->
+    <title>出售</title>
+</head>
+<body>
+<div id="nav">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <img th:src="@{/img/logo.png}" alt="logo">
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right" id="loginRegister">
+                    <li>
+                        <a th:href="@{/toIndex}">
+                            <span class="glyphicon glyphicon-home navtu " style=" padding-right: 5px;"
+                                  aria-hidden="true"></span>首页
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/toMyOrder/{userId}(userId=${session.userId})}">
+                            <span class="glyphicon glyphicon-list-alt" style=" padding-right: 5px;"
+                                  aria-hidden="true"></span>我的订单
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/toMySell/{userId}(userId=${session.userId})}">
+                            <span class="glyphicon glyphicon-user" style=" padding-right: 5px;"
+                                  aria-hidden="true"></span>我是卖家
+                        </a>
+                    </li>
+                    <li class="text-center">
+                        <a th:href="@{/shoppingCartGoods/{userId}(userId=${session.userId})}"><span
+                                class="glyphicon glyphicon glyphicon-shopping-cart navtu"
+                                style=" padding-right: 5px;" aria-hidden="true"></span>购物车</a>
+                    </li>
+                    <li><a id="login" th:href="@{/toLogin}"
+                           th:text="${#strings.isEmpty(session.userName)?'登录':session.userName}"></a></li>
+                    <li><a id="logOut" th:href="@{/logOut}" th:text="${#strings.isEmpty(session.userName)?'':'注销'}"></a>
+                    </li>
+                    <li><a th:href="@{/toRegister}">注册</a></li>
+                    <li><p th:text="${session.userId}" style="display: none" id="userId"></p></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<div id="main">
+    <div id="sellwindows"><p th:text="${msg}" style="color: red"></p>
+        <h2 class="text-center" id="selltitle">商品出售</h2>
+        <hr style="border-top: 1px solid #3d6dc5;">
+        <form enctype="multipart/form-data" class="form-horizontal" id="form"
+              th:action="@{/sellGoods/{userId}(userId=${session.userId})}" method="post">
+            <div class="form-group">
+                <label for="inputfile" class="col-sm-3 col-sm-offset-1 control-label ">商品图片</label>
+                <div class="col-sm-6">
+                    <input type="file" id="inputfile" name="file" class="btn-success">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="goodsname" class="col-sm-3 col-sm-offset-1 control-label ">商品名称</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="goodsName" id="goodsname" placeholder="商品名称">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="goodsprice" class="col-sm-3 col-sm-offset-1 control-label ">商品价格</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="goodsPrice" id="goodsprice" placeholder="商品价格">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="goodsamount" class="col-sm-3 col-sm-offset-1 control-label ">商品数量</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="goodsAmount" id="goodsamount" placeholder="商品数量">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="goodsbrand" class="col-sm-3 col-sm-offset-1 control-label">商品品牌</label>
+                <div class="col-sm-6">
+                    <textarea id="goodsbrand" name="goodsBrand" class="form-control" cols="40" rows="2"
+                              placeholder="商品名牌"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="goodsdesc" class="col-sm-3 col-sm-offset-1 control-label">商品描述</label>
+                <div class="col-sm-6">
+                    <textarea class="form-control" name="goodsDesc" id="goodsdesc" cols="40" rows="4"
+                              placeholder="商品描述"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-5 col-sm-offset-4">
+                    <button type="submit" class="form-control btn-primary" id="sellbutton">提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div id="footer">
+    <hr style="border-top: 2px solid #c4ccdd;">
+    <p class="text-center">
+        <strong>
+            本网站由长沙理工大学计算机系同学完成@2021.07<br>
+            本项目源码受MIT开源协议保护<br>
+        </strong>
+    </p>
+</div>
+</body>
+</html>

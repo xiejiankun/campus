@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#logo{
+    margin-left: -15%;
+}
+#loginRegister{
+    margin-right: 10%;
+}
+
+#main{
+    padding-top: 100px;
+}
+#shopCarButton{
+    background-image: linear-gradient(to bottom right,rgb(104, 212, 194),rgb(111, 231, 111));
+}

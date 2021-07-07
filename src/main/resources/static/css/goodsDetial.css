@@ -1,0 +1,101 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#logo{
+    margin-left: -15%;
+}
+#loginRegister{
+    margin-right: 10%;
+}
+
+#main{
+    padding-top: 100px;
+}
+.small_piclist li img{
+    width:70px;
+    height:70px;
+    border:1px solid #ccc;
+    float: left;
+    margin-right: 6px;
+    border: 1px dotted #ccc;
+    padding: 1px;
+}
+/*标签项目*/
+.tab{
+    clear: both;
+    margin:10px;
+    border-bottom:1px solid #ccc;
+    height:35px;
+    line-height:35px;
+}
+.tab li{
+    width:90px;
+    float:left;
+    font-size:14px;
+    text-align:center;
+    list-style: none;
+}
+.tab_active{
+    border-top:3px solid red;
+    width:100px;
+    font-weight:700;
+    background:#f2f2f2;
+    height:33px;
+    border-right:1px solid #ccc;
+    border-left:1px solid #ccc;
+}
+article{
+    display:block;
+   height: 300px;
+    border: pink 3px solid;
+}
+.none{
+    display: none;
+}
+/*遮罩部分*/
+#box{
+    position: relative;
+    margin-bottom: 10px;
+    width: 400px;
+    height: 400px;
+    float: left;
+}
+#shade{
+    position: absolute;
+    top: 0px;
+    z-index: 1000;
+    width: 200px;
+    height: 200px;
+    filter: alpha(Opacity=70);
+    -moz-opacity:0.7;
+    opacity: 0.7;
+    background-color: #ffc;
+    display: none;
+}
+#canvas{
+    z-index: 99;
+    position: absolute;
+    left: 410px;
+    top: 0px;
+    background-color: wheat;
+    display: none;
+}
+#right{
+    float: right;
+
+}
+#regoods{
+    height: 400px;
+    /* width: 200px; */
+    border: aquamarine 1px solid;
+}
+#des{
+    height: 400px;
+    border: orange 2px solid;
+}
+
+#footer{
+    height: 100px;
+}
+

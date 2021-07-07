@@ -1,8 +1,7 @@
 package com.jaken.secondHand.mapper;
 
-import com.jaken.secondHand.pojo.Order;
+import com.jaken.secondHand.pojo.scOrder;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -15,6 +14,6 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface OrderMapper extends BaseMapper<Order> {
+public interface OrderMapper extends BaseMapper<scOrder> {
 
 }

@@ -1,7 +1,9 @@
 package com.jaken.secondHand.service;
 
-import com.jaken.secondHand.pojo.Order;
+import com.jaken.secondHand.pojo.scOrder;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -11,6 +13,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author jaken Xie
  * @since 2021-06-26
  */
-public interface OrderService extends IService<Order> {
-
+public interface OrderService extends IService<scOrder> {
+    List<scOrder> showOrderList(int userId);
+    int addOrder(int userId,double totalMoney);
 }

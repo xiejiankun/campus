@@ -21,7 +21,7 @@
     padding: 20px;
 }
 #mainMiddle{
-    padding: 100px 0;
+    padding: 55px 0;
 }
 .tphoto{
     height: 250px;
@@ -33,11 +33,16 @@
 }
 #footer{
     height: 100px;
-    background-color: rgb(32, 32, 32);
-    color: white;
-    margin-top: 50px;
 }
 
 .show:hover{
     border: 2px orange solid;
 }
+
+.show{
+    border: 1px white solid;
+}
+#button{
+    margin: 0 auto;
+}
+

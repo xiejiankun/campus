@@ -1,0 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#main{  
+    clear: both;
+    height: 600px;
+    background-image: url("../img/back1.jpg");
+    background-size: cover;
+}
+#regwindows{
+    clear: both;
+    width: 35%;
+    height:auto;
+    border-radius: 5%;
+    position:absolute;
+        margin: 5% 10% 10% 50%;
+    background-color: rgba(218, 220, 221, 0.8);
+    box-shadow: -20px 10px 30px #7f816f
+}
+#yonghureg{
+    padding-top: 20px;
+    color: initial;
+}
+#regbutton{
+    background-image: linear-gradient(to right,rgb(130, 207, 143),rgb(221, 193, 99));
+}
+.tishi{
+    display: none;
+    color: red;
+}
+#footer{
+    height: 100px;
+    background-color: white;
+
+}

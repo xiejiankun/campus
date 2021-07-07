@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#loginRegister{
+    margin-right: 10%;
+}
+#main{
+    clear: both;
+    padding: 100px 0 20px 0;
+    background-image: url("../img/back2.jpg");
+    background-size: cover;
+}
+#sellwindows{
+    border-radius: 5%;
+    box-shadow: 10px 10px 50px grey;
+    clear: both;
+    width: 35%;
+    height:auto;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: rgba(218, 220, 221,0.5);
+}
+#sellbutton{
+     background-image:linear-gradient(to bottom right,#e66465,#9198e5);
+}
+#footer{
+    height: 100px;
+  
+}
+.error{
+    color:red;
+}
